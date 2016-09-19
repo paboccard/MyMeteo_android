@@ -12,4 +12,109 @@
     tools:context="com.example.uapv1600460.mymeteo.CityListActivity"
     tools:showIn="@layout/cityview_layout">
 
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <GridLayout xmlns:tools="http://schemas.android.com/tools"
+            android:id="@+id/GridLayout1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:columnCount="2"
+            android:rowCount="2"
+            android:orientation="horizontal"
+            android:fitsSystemWindows="true"
+            android:clipToPadding="true">
+
+            <TextView
+                android:text="Ville : "
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="8dp"/>
+            <TextView
+                android:text="Name"
+                android:id="@+id/nameCity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="8dp"/>
+
+            <TextView
+                android:text="Country : "
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="8dp"/>
+            <TextView
+                android:text="Name"
+                android:id="@+id/nameCountry"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="8dp"/>
+        </GridLayout>
+
+        <TextView
+            style="?android:listSeparatorTextViewStyle"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"/>
+
+        <GridLayout xmlns:tools="http://schemas.android.com/tools"
+            android:id="@+id/GridLayout2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:columnCount="2"
+            android:rowCount="2"
+            android:orientation="horizontal"
+            android:fitsSystemWindows="true"
+            android:clipToPadding="true">
+            <TextView
+                android:text="Vent : "
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="8dp"/>
+            <TextView
+                android:text="Name"
+                android:id="@+id/wind"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="8dp"/>
+
+            <TextView
+                android:text="Temperature : "
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="8dp"/>
+            <TextView
+                android:text="Name"
+                android:id="@+id/temperature"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="8dp"/>
+
+            <TextView
+                android:text="Pression : "
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="8dp"/>
+            <TextView
+                android:text="Name"
+                android:id="@+id/pressur"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="8dp"/>
+
+            <TextView
+                android:text="Date : "
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="8dp"/>
+            <TextView
+                android:text="Name"
+                android:id="@+id/date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="8dp"/>
+
+        </GridLayout>
+
+    </LinearLayout>
 </RelativeLayout>

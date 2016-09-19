@@ -21,7 +21,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".CityListActivity"
+            android:name="com.example.uapv1600460.mymeteo.CityListActivity"
             android:label="@string/title_activity_city_list"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>

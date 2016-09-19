@@ -1,12 +1,13 @@
 package com.example.uapv1600460.mymeteo;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 
 /**
  * Created by uapv1600460 on 14/09/16.
  */
-public class City {
+public class City implements Serializable {
 
     String name;
     String country;
@@ -14,15 +15,15 @@ public class City {
     float speedWind;
     String directionWind;
     float pressur;
-    float temperatur;
+    float temperature;
 
-    public City(String name, String country, String dateLastRelev, float pressur, float speedWind, float temperatur, String directionWind) {
+    public City(String name, String country, String dateLastRelev, float pressur, float speedWind, float temperature, String directionWind) {
         this.name = name;
         this.country = country;
         this.dateLastRelev = dateLastRelev;
         this.pressur = pressur;
         this.speedWind = speedWind;
-        this.temperatur = temperatur;
+        this.temperature = temperature;
         this.directionWind = directionWind;
     }
 
