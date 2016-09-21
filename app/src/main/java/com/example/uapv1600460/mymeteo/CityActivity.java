@@ -151,8 +151,8 @@ public class CityActivity extends AppCompatActivity {
             String result = "";
             try {
                 JSONResponseHandler json = new JSONResponseHandler();
-                String query = "select * from weather.forecast where woeid in (select woeid from geo.places(1) where text='annecy, fr')&format=json";
-                List<String> results = json.handleResponse(new URL("https://query.yahooapis.com/v1/public/yql?q=" + Uri.encode(query)).openStream(),"");
+                String query = "https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20weather.forecast%20where%20woeid%20in%20(select%20woeid%20from%20geo.places(1)%20where%20text='annecy,%20france')&format=json";
+                List<String> results = json.handleResponse(new URL("https://query.yahooapis.com/v1/public/yql?q=" + query).openStream(),"");
                 System.out.println(results.toString());
             } catch (MalformedURLException e) {
                 e.printStackTrace();
@@ -162,7 +162,8 @@ public class CityActivity extends AppCompatActivity {
             return null;
         }
 
-        https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20weather.forecast%20where%20woeid%20in%20(select%20woeid%20from%20geo.places(1)%20where%20text%3D'annecy%2C%20fr')%26format%3Djson
+        //https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20weather.forecast%20where%20woeid%20in%20(select%20woeid%20from%20geo.places(1)%20where%20text='annecy,%20france')&format=json
+        //https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20weather.forecast%20where%20woeid%20in%20(select%20woeid%20from%20geo.places(1)%20where%20text='cavaillon,%20france')&format=json
 
         @Override
         protected void onPreExecute() {
