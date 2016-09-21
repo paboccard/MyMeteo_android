@@ -17,6 +17,8 @@ public class City implements Serializable {
     float pressur;
     float temperature;
 
+    public City(){};
+
     public City(String name, String country, String dateLastRelev, float pressur, float speedWind, float temperature, String directionWind) {
         this.name = name;
         this.country = country;

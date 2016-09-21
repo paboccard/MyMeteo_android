@@ -4,9 +4,12 @@ package com.example.uapv1600460.mymeteo;
 import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -16,17 +19,24 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
+import java.util.List;
 
 public class CityActivity extends AppCompatActivity {
 
     private ListView myListCity;
     static ArrayList<City> cities = new ArrayList<>();
     CityAdapter cityAdapter;
+    SwipeRefreshLayout swipeRefreshCities;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -36,16 +46,19 @@ public class CityActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                Intent intent = new Intent(getBaseContext(), AddCityActivity.class);
+                startActivity(intent);
+                //Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                //        .setAction("Action", null).show();
             }
         });
 
         myListCity = (ListView) findViewById(R.id.listView);
+        swipeRefreshCities = (SwipeRefreshLayout) findViewById(R.id.swipeContainer);
+
         cities = City.getAllCities();
 
-        cityAdapter = new CityAdapter(this,cities);
-
+        cityAdapter = new CityAdapter(this, cities);
         myListCity.setAdapter(cityAdapter);
 
         /*
@@ -56,8 +69,8 @@ public class CityActivity extends AppCompatActivity {
 
                 City citySelect = (City) myListCity.getItemAtPosition(position);
 
-                Intent intent = new Intent(getBaseContext() , CityListActivity.class);
-                intent.putExtra("city-selected",citySelect);
+                Intent intent = new Intent(getBaseContext(), CityListActivity.class);
+                intent.putExtra("city-selected", citySelect);
                 startActivity(intent);
             }
         });
@@ -69,7 +82,7 @@ public class CityActivity extends AppCompatActivity {
             @Override
             public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
 
-                City city = (City)myListCity.getItemAtPosition(i);
+                City city = (City) myListCity.getItemAtPosition(i);
                 final int position = i;
                 AlertDialog.Builder builder = new AlertDialog.Builder(CityActivity.this, R.style.MyAlertDialogStyle);
                 builder.setTitle("Supprimer");
@@ -79,7 +92,7 @@ public class CityActivity extends AppCompatActivity {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         cities.remove(position);
-                        cityAdapter = new CityAdapter(CityActivity.this,cities);
+                        cityAdapter = new CityAdapter(CityActivity.this, cities);
                         myListCity.setAdapter(cityAdapter);
                     }
                 });
@@ -87,6 +100,14 @@ public class CityActivity extends AppCompatActivity {
                 builder.show();
 
                 return true;
+            }
+        });
+
+        swipeRefreshCities.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                ReloadListView reloadListView = new ReloadListView();
+                reloadListView.execute();
             }
         });
     }
@@ -111,6 +132,56 @@ public class CityActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();  // Always call the superclass method first
+        myListCity = (ListView) findViewById(R.id.listView);
+
+        cityAdapter = new CityAdapter(this, cities);
+        myListCity.setAdapter(cityAdapter);
+    }
+
+
+    private class ReloadListView extends AsyncTask {
+
+        @Override
+        protected Object doInBackground(Object[] objects) {
+            String result = "";
+            try {
+                JSONResponseHandler json = new JSONResponseHandler();
+                String query = "select * from weather.forecast where woeid in (select woeid from geo.places(1) where text='annecy, fr')&format=json";
+                List<String> results = json.handleResponse(new URL("https://query.yahooapis.com/v1/public/yql?q=" + Uri.encode(query)).openStream(),"");
+                System.out.println(results.toString());
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            return null;
+        }
+
+        https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20weather.forecast%20where%20woeid%20in%20(select%20woeid%20from%20geo.places(1)%20where%20text%3D'annecy%2C%20fr')%26format%3Djson
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            Toast.makeText(getApplicationContext(),"Traitement en cours...",Toast.LENGTH_LONG).show();
+            swipeRefreshCities.setRefreshing(true);
+        }
+
+        @Override
+        protected void onPostExecute(Object o) {
+            super.onPostExecute(o);
+            Toast.makeText(getApplicationContext(),"Le traitement asynchrone est terminé",Toast.LENGTH_LONG).show();
+            swipeRefreshCities.setRefreshing(false);
+        }
+
+        @Override
+        protected void onProgressUpdate(Object[] values) {
+            super.onProgressUpdate(values);
+        }
     }
 
 }
