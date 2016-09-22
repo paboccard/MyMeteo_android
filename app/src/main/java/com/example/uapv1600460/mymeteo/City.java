@@ -12,31 +12,29 @@ public class City implements Serializable {
     String name;
     String country;
     String dateLastRelev;
-    float speedWind;
-    String directionWind;
-    float pressur;
-    float temperature;
+    String speedWind;
+    String pressur;
+    String temperature;
 
     public City(){};
 
-    public City(String name, String country, String dateLastRelev, float pressur, float speedWind, float temperature, String directionWind) {
+    public City(String name, String country, String dateLastRelev, String pressur, String speedWind, String temperature) {
         this.name = name;
         this.country = country;
         this.dateLastRelev = dateLastRelev;
         this.pressur = pressur;
         this.speedWind = speedWind;
         this.temperature = temperature;
-        this.directionWind = directionWind;
     }
 
     public static ArrayList<City> getAllCities(){
         ArrayList<City> cities = new ArrayList<>();
 
-        cities.add(new City("Brest","France", "14/09/2016",1003,50,21,"Est"));
-        cities.add(new City("Marseille","France", "14/09/2016",1024,10,32,"Ouest"));
-        cities.add(new City("Montreal","Canada", "14/09/2016",1023,0,21,"Sud"));
-        cities.add(new City("Istanbul","Turquie", "14/09/2016",1000,23,26,"Nord"));
-        cities.add(new City("Seoul","Korea", "14/09/2016",1002,10,22,"Est"));
+        cities.add(new City("Brest","France", "14/09/2016","1003","50","21"));
+        cities.add(new City("Marseille","France", "14/09/2016","1024","10","32"));
+        cities.add(new City("Montreal","Canada", "14/09/2016","1023","0","21"));
+        cities.add(new City("Istanbul","Turquie", "14/09/2016","1000","23","26"));
+        cities.add(new City("Seoul","Korea", "14/09/2016","1002","10","22"));
 
         return cities;
     }

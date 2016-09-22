@@ -25,7 +25,7 @@ public class AddCityActivity extends AppCompatActivity {
     }
 
     public void addCity(View view){
-        City newCity = new City(nameCity.getText().toString(),nameCountry.getText().toString(),"",0,0,0,"");
+        City newCity = new City(nameCity.getText().toString(),nameCountry.getText().toString(),"","0","0","0");
         CityActivity.cities.add(newCity);
         finish();
     }

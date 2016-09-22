@@ -42,9 +42,9 @@ public class CityListActivity extends AppCompatActivity {
 
         tx_nameCity.setText(serializableCity.name);
         tx_nameCountry.setText(serializableCity.country);
-        tx_wind.setText(Float.toString(serializableCity.speedWind));
-        tx_temperature.setText(Float.toString(serializableCity.temperature) + " °C");
-        tx_pressur.setText(Float.toString(serializableCity.pressur) + " hPa");
+        tx_wind.setText(serializableCity.speedWind);
+        tx_temperature.setText(serializableCity.temperature + " °C");
+        tx_pressur.setText(serializableCity.pressur + " hPa");
         tx_date.setText(serializableCity.dateLastRelev + " UTC");
     }
 
