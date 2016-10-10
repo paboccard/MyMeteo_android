@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.example.uapv1600460.mymeteo.CityListActivity"
+    android:id="@+id/relLayContentCityList">
+
+
+    <TextView
+        android:id="@+id/city"
+        android:text="city"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="56dp"
+        android:layout_centerHorizontal="true"
+        android:textSize="30sp"
+        android:gravity="center_vertical|center_horizontal"
+        android:textColor="#fff"/>
+
+    <TextView
+        android:id="@+id/weather_icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:layout_below="@+id/city"
+        android:textSize="70sp"
+        android:width="180sp"
+        android:height="150sp"
+        android:layout_marginTop="20sp"
+        android:textColor="#fff"/>
+
+    <TextView
+        android:id="@+id/temp"
+        android:text="temperature"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textSize="30sp"
+        android:fontFamily="sans-serif-thin"
+        android:layout_below="@+id/weather_icon"
+        android:gravity="center_vertical|center_horizontal"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20sp"
+        android:textColor="#fff"/>
+
+    <TextView
+        android:id="@+id/details_field"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/temp"
+        android:layout_centerHorizontal="true"
+        android:textSize="20sp"
+        android:layout_marginTop="5sp"
+        android:fontFamily="sans-serif-thin"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textColor="#fff"
+        />
+
+    <TextView
+        android:id="@+id/date"
+        android:text="date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textSize="10sp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:textColor="#fff" />
+
+</RelativeLayout>

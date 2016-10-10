@@ -4,13 +4,40 @@
     android:orientation="vertical"
     android:id="@+id/my_linear_layout"
     android:layout_width="fill_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:minWidth="50sp">
+
+    <TextView
+        android:id="@+id/nameCity"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:lines="1"
+        android:padding="8dp" />
+
+    <ImageView
+        android:id="@+id/img_weather"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:background="@null"
+        android:padding="2dp"
+        android:layout_marginBottom="15sp"
+        android:backgroundTint="@color/colorAccent"/>
+
+    <!--<ImageView
+        android:contentDescription="row"
+        android:id="@+id/img_weather"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_gravity="top|end">
+    </ImageView>
 
     <TextView
         android:text="Name"
         android:id="@+id/nameCity"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:padding="8dp"/>
+        android:padding="8dp" />-->
 
 </LinearLayout>

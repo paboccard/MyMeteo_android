@@ -58,6 +58,9 @@ public class CityActivity extends AppCompatActivity {
 
         cities = City.getAllCities();
 
+        ReloadListView reloadListView = new ReloadListView(myListCity);
+        reloadListView.execute();
+
         cityAdapter = new CityAdapter(this, cities);
         myListCity.setAdapter(cityAdapter);
 
@@ -106,7 +109,7 @@ public class CityActivity extends AppCompatActivity {
         swipeRefreshCities.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                ReloadListView reloadListView = new ReloadListView();
+                ReloadListView reloadListView = new ReloadListView(myListCity);
                 reloadListView.execute();
             }
         });
@@ -145,6 +148,11 @@ public class CityActivity extends AppCompatActivity {
 
 
     private class ReloadListView extends AsyncTask {
+        ListView myListCity;
+
+        ReloadListView(ListView listview){
+            myListCity = listview;
+        }
 
         @Override
         protected Object doInBackground(Object[] objects) {
@@ -160,6 +168,7 @@ public class CityActivity extends AppCompatActivity {
                     cities.get(index).temperature = results.get(1).toString();
                     cities.get(index).pressur = results.get(2).toString();
                     cities.get(index).dateLastRelev = results.get(3).toString();
+                    cities.get(index).status = results.get(4).toString();
                     index++;
                 }
 
@@ -181,6 +190,10 @@ public class CityActivity extends AppCompatActivity {
         @Override
         protected void onPostExecute(Object o) {
             super.onPostExecute(o);
+
+            cityAdapter.setlCity(CityActivity.cities);
+            myListCity.setAdapter(cityAdapter);
+
             Toast.makeText(getApplicationContext(),"Le traitement asynchrone est terminé",Toast.LENGTH_LONG).show();
             swipeRefreshCities.setRefreshing(false);
         }

@@ -23,7 +23,7 @@ import java.util.List;
 
 public class JSONResponseHandler {
 
-    private String mTime, mWind, mTemperature, mPressure;
+    private String mTime, mWind, mTemperature, mPressure, mStatus;
     private ArrayList<String> mRes;
 
     private static final String TAG = JSONResponseHandler.class.getSimpleName();
@@ -50,6 +50,7 @@ public class JSONResponseHandler {
         res.add(mTemperature);
         res.add(mPressure);
         res.add(mTime);
+        res.add(mStatus);
         return res;
 
     }
@@ -169,7 +170,10 @@ public class JSONResponseHandler {
             String name = reader.nextName();
             if (name.equals("temp")) {
                 mTemperature = farenheit2celsius(reader.nextString());
-            } else {
+            } else if (name.equals("text")){
+                mStatus = reader.nextString();
+            }
+            else {
                 reader.skipValue();
             }
         }

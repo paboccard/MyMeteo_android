@@ -15,6 +15,7 @@ public class City implements Serializable {
     String speedWind;
     String pressur;
     String temperature;
+    String status;
 
     public City(){};
 
@@ -31,7 +32,7 @@ public class City implements Serializable {
         ArrayList<City> cities = new ArrayList<>();
 
         cities.add(new City("Brest","France", "14/09/2016","1003","50","21"));
-        cities.add(new City("Marseille","France", "14/09/2016","1024","10","32"));
+        cities.add(new City("Marseille","France", "14/09/2016","1024","10","50"));
         cities.add(new City("Montreal","Canada", "14/09/2016","1023","0","21"));
         cities.add(new City("Istanbul","Turquie", "14/09/2016","1000","23","26"));
         cities.add(new City("Seoul","Korea", "14/09/2016","1002","10","22"));
